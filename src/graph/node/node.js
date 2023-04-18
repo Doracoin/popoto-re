@@ -895,10 +895,7 @@ node.segmentClick = function (event, d) {
     var n = d3.select(this.parentNode.parentNode).datum();
 
     graph.ignoreCount = true;
-    graph.notifyListeners(graph.Events.GRAPH_SEGMENT_CLICKED, {
-        clickedNode: d,
-        rootNode: n,
-    });
+    graph.notifyListeners(graph.Events.GRAPH_SEGMENT_CLICKED, [d, n]);
 
     graph.addRelationshipData(n, d, function (targetNode) {
         graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_ADD, [
@@ -976,10 +973,7 @@ node.nodeClick = function (event) {
     if (!event.defaultPrevented) { // To avoid click on drag end
         var clickedNode = d3.select(this).data()[0]; // Clicked node data
         logger.debug("nodeClick (" + clickedNode.label + ")");
-        graph.notifyListeners(graph.Events.GRAPH_NODE_CLICKED, {
-            clickedNode: clickedNode,
-            rootNode: graph.getRootNode(),
-        });
+        graph.notifyListeners(graph.Events.GRAPH_NODE_CLICKED, [clickedNode, graph.getRootNode()]);
 
         if (clickedNode.type === node.NodeTypes.VALUE) {
             node.valueNodeClick(clickedNode);
