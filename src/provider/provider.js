@@ -545,8 +545,8 @@ provider.node.getDisplayAttribute = function (label) {
  * @param label
  * @returns {*}
  */
-provider.node.getPredefinedConstraints = function (label) {
-    return provider.node.getProperty(label, "getPredefinedConstraints")();
+provider.node.getPredefinedConstraints = function (label, rootNode, selectedNode) {
+    return provider.node.getProperty(label, "getPredefinedConstraints")(label, rootNode, selectedNode);
 };
 
 provider.node.filterResultQuery = function (label, initialQuery) {

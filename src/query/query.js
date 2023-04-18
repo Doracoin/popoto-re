@@ -167,7 +167,7 @@ query.generateQueryElements = function (rootNode, selectedNode, links, isConstra
     var returnElements = [];
     var parameters = {};
 
-    var rootPredefinedConstraints = provider.node.getPredefinedConstraints(rootNode.label);
+    var rootPredefinedConstraints = provider.node.getPredefinedConstraints(rootNode.label, rootNode, selectedNode);
 
     rootPredefinedConstraints.forEach(function (predefinedConstraint) {
         whereElements.push(predefinedConstraint.replace(new RegExp("\\$identifier", 'g'), rootNode.internalLabel));
