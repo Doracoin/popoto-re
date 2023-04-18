@@ -41,7 +41,8 @@ graph.Events = Object.freeze({
     GRAPH_NODE_VALUE_EXPAND: "graph.node.value_expand",
     GRAPH_NODE_VALUE_COLLAPSE: "graph.node.value_collapse",
     GRAPH_NODE_ADD_VALUE: "graph.node.add_value",
-    GRAPH_NODE_DATA_LOADED: "graph.node.data_loaded"
+    GRAPH_NODE_DATA_LOADED: "graph.node.data_loaded",
+    GRAPH_NODE_CLICKED: "graph.node.clicked"
 });
 
 graph.listeners = {};

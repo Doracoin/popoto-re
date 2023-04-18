@@ -972,6 +972,7 @@ node.nodeClick = function (event) {
     if (!event.defaultPrevented) { // To avoid click on drag end
         var clickedNode = d3.select(this).data()[0]; // Clicked node data
         logger.debug("nodeClick (" + clickedNode.label + ")");
+        graph.notifyListeners(graph.Events.GRAPH_NODE_CLICKED, [clickedNode, graph.getRootNode()]);
 
         if (clickedNode.type === node.NodeTypes.VALUE) {
             node.valueNodeClick(clickedNode);
