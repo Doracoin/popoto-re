@@ -1737,6 +1737,11 @@ node.loadRelationshipData = function (n, callback, directionAngle) {
                     }
                 });
 
+                // Notify listeners
+                result.resultRelationListeners.forEach(function (listener) {
+                    listener(filteredData);
+                });
+
                 callback(filteredData);
             })
             .catch(function (error) {

@@ -10,6 +10,7 @@ result.containerId = "popoto-results";
 result.hasChanged = true;
 result.resultCountListeners = [];
 result.resultListeners = [];
+result.resultRelationListeners = [];
 result.graphResultListeners = [];
 result.RESULTS_PAGE_SIZE = 10;
 result.TOTAL_COUNT = false;
@@ -24,6 +25,10 @@ result.onTotalResultCount = function (listener) {
 
 result.onResultReceived = function (listener) {
     result.resultListeners.push(listener);
+};
+
+result.onResultRelationReceived = function (listener) {
+    result.resultRelationListeners.push(listener);
 };
 
 result.onGraphResultReceived = function (listener) {
