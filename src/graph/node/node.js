@@ -1146,6 +1146,11 @@ node.chooseNodeClick = function (clickedNode) {
                         return keepData;
                     });
 
+                    // Notify listeners
+                    result.resultValueListeners.forEach(function (listener) {
+                        listener(clickedNode.data);
+                    });
+
                     clickedNode.page = 1;
                     node.expandNode(clickedNode);
                     node.chooseWaiting = false;

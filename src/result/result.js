@@ -11,6 +11,7 @@ result.hasChanged = true;
 result.resultCountListeners = [];
 result.resultListeners = [];
 result.resultRelationListeners = [];
+result.resultValueListeners = [];
 result.graphResultListeners = [];
 result.RESULTS_PAGE_SIZE = 10;
 result.TOTAL_COUNT = false;
@@ -29,6 +30,10 @@ result.onResultReceived = function (listener) {
 
 result.onResultRelationReceived = function (listener) {
     result.resultRelationListeners.push(listener);
+};
+
+result.onResultValueReceived = function (listener) {
+    result.resultValueListeners.push(listener);
 };
 
 result.onGraphResultReceived = function (listener) {
