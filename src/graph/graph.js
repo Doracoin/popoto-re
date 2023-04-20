@@ -28,6 +28,7 @@ graph.WHEEL_ZOOM_ENABLED = true;
 graph.USE_DONUT_FORCE = false;
 graph.USE_VORONOI_LAYOUT = false;
 graph.USE_FIT_TEXT = false;
+graph.USE_CTRL_KEY = false;
 
 /**
  * Define the list of listenable events on graph.

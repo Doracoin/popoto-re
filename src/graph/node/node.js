@@ -978,7 +978,7 @@ node.nodeClick = function (event) {
         if (clickedNode.type === node.NodeTypes.VALUE) {
             node.valueNodeClick(clickedNode);
         } else if (clickedNode.type === node.NodeTypes.CHOOSE || clickedNode.type === node.NodeTypes.ROOT) {
-            if (event.ctrlKey) {
+            if (event.ctrlKey && graph.USE_CTRL_KEY) {
                 if (clickedNode.type === node.NodeTypes.CHOOSE) {
                     clickedNode.isNegative = !clickedNode.hasOwnProperty("isNegative") || !clickedNode.isNegative;
 
