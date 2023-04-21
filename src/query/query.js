@@ -650,7 +650,7 @@ query.generateNodeRelationQuery = function (targetNode) {
     var rel = query.USE_RELATION_DIRECTION ? "->" : "-";
 
     if (!query.USE_RELATION_PARENT_NODE) {
-        queryMatchElements.slice(0, queryMatchElements.length);
+        queryMatchElements.splice(0, queryMatchElements.length);
     }
 
     queryMatchElements.push("(" + targetNode.internalLabel + ":`" + targetNode.label + "`)-[r]" + rel + "(x)");
