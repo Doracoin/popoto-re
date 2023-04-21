@@ -132,6 +132,7 @@ node.updateCount = function () {
     });
 
     logger.info("Count nodes ==>");
+    graph.notifyListeners(graph.Events.GRAPH_NODE_COUNT_LOADING, [countedNodes])
     runner.run(
         {
             "statements": statements
@@ -183,6 +184,7 @@ node.updateAutoLoadValues = function () {
 
     if (statements.length > 0) {
         logger.info("AutoLoadValue ==>");
+        graph.notifyListeners(graph.Events.GRAPH_NODE_AUTO_VALUE_LOADING, [nodesToLoadData])
         runner.run(
             {
                 "statements": statements
@@ -211,7 +213,7 @@ node.updateAutoLoadValues = function () {
                     nodeToQuery.page = 1;
                 }
 
-                graph.notifyListeners(graph.Events.GRAPH_NODE_DATA_LOADED, [nodesToLoadData]);
+                graph.notifyListeners(graph.Events.GRAPH_NODE_AUTO_VALUE_LOADED, [nodesToLoadData]);
             })
             .catch(function (error) {
                 logger.error(error);
@@ -1121,6 +1123,7 @@ node.chooseNodeClick = function (clickedNode) {
         } else {
             logger.info("Values (" + clickedNode.label + ") ==>");
             var nodeValueQuery = query.generateNodeValueQuery(clickedNode);
+            graph.notifyListeners(graph.Events.GRAPH_NODE_VALUE_LOADING, [clickedNode])
             runner.run(
                 {
                     "statements": [
@@ -1483,6 +1486,7 @@ node.addRelatedValues = function (n, values, isNegative) {
     });
 
     logger.info("addRelatedValues ==>");
+    graph.notifyListeners(graph.Events.GRAPH_NODE_RELATED_VALUE_LOADING, [n, values])
     runner.run(
         {
             "statements": statements
@@ -1529,6 +1533,7 @@ node.addRelatedValues = function (n, values, isNegative) {
                     }, [value], isNegative);
                 }
             });
+            graph.notifyListeners(graph.Events.GRAPH_NODE_RELATED_VALUE_LOADED, [n, parsedData])
         })
         .catch(function (error) {
             logger.error(error);
@@ -1713,6 +1718,7 @@ node.loadRelationshipData = function (n, callback, directionAngle) {
         var nodeRelationQuery = query.generateNodeRelationQuery(n);
 
         logger.info("Relations (" + n.label + ") ==>");
+        graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_DATA_LOADING, [n])
         runner.run(
             {
                 "statements": [

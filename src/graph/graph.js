@@ -42,9 +42,30 @@ graph.Events = Object.freeze({
     GRAPH_NODE_VALUE_EXPAND: "graph.node.value_expand",
     GRAPH_NODE_VALUE_COLLAPSE: "graph.node.value_collapse",
     GRAPH_NODE_ADD_VALUE: "graph.node.add_value",
-    GRAPH_NODE_DATA_LOADED: "graph.node.data_loaded",
+
+    
+    // ================================↓↓↓ Custom Start ↓↓↓==========================================
     GRAPH_NODE_CLICKED: "graph.node.clicked",
-    GRAPH_SEGMENT_CLICKED: "graph.segment.clicked"
+    GRAPH_SEGMENT_CLICKED: "graph.segment.clicked",
+
+    /** Finished by {result.resultValueListeners} */
+    GRAPH_NODE_VALUE_LOADING: "graph.node.value_loading",
+
+    /** Finished by {graph.Events.GRAPH_NODE_RELATED_VALUE_LOADED} */
+    GRAPH_NODE_RELATED_VALUE_LOADING: "graph.node.related_value_loading",
+    GRAPH_NODE_RELATED_VALUE_LOADED: "graph.node.related_value_loaded",
+
+    /** Finished by {result.resultRelationListeners} */
+    GRAPH_NODE_RELATION_DATA_LOADING: "graph.node.relation_data_loading",
+
+    /** Finished by {result.resultCountListeners} */
+    GRAPH_NODE_COUNT_LOADING: "graph.node.count_loading",
+
+    /** Finished by {graph.Events.GRAPH_NODE_DATA_LOADED} */
+    GRAPH_NODE_AUTO_VALUE_LOADING: "graph.node.auto_value_loading",
+    GRAPH_NODE_AUTO_VALUE_LOADED: "graph.node.auto_value_loaded",
+
+    // ================================↑↑↑ Custom End ↑↑↑==========================================
 });
 
 graph.listeners = {};
