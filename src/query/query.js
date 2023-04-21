@@ -11,6 +11,7 @@ query.MAX_RESULTS_COUNT = 100;
 query.VALUE_QUERY_LIMIT = 100;
 query.USE_PARENT_RELATION = false;
 query.USE_RELATION_DIRECTION = true;
+query.USE_RELATION_PARENT_NODE = false;
 query.RETURN_LABELS = false;
 query.COLLECT_RELATIONS_WITH_VALUES = false;
 query.prefilter = "";
@@ -29,7 +30,9 @@ query.applyPrefilters = function (queryStructure) {
 /**
  * Immutable constant object to identify Neo4j internal ID
  */
-query.NEO4J_INTERNAL_ID = Object.freeze({queryInternalName: "NEO4JID"});
+query.NEO4J_INTERNAL_ID = Object.freeze({
+    queryInternalName: "NEO4JID"
+});
 
 /**
  * Function used to filter returned relations
@@ -265,7 +268,8 @@ query.generateNodeValueConstraints = function (node, useCustomConstraints) {
     if (useCustomConstraints && provider.node.getGenerateNodeValueConstraints(node) !== undefined) {
         return provider.node.getGenerateNodeValueConstraints(node)(node);
     } else {
-        var parameters = {}, whereElements = [];
+        var parameters = {},
+            whereElements = [];
         if (node.value !== undefined && node.value.length > 0) {
             var constraintAttr = provider.node.getConstraintAttribute(node.label);
             var paramName;
@@ -644,6 +648,10 @@ query.generateNodeRelationQuery = function (targetNode) {
         queryParameters = queryElements.parameters;
 
     var rel = query.USE_RELATION_DIRECTION ? "->" : "-";
+
+    if (!query.USE_RELATION_PARENT_NODE) {
+        queryMatchElements.slice(0, queryMatchElements.length);
+    }
 
     queryMatchElements.push("(" + targetNode.internalLabel + ":`" + targetNode.label + "`)-[r]" + rel + "(x)");
     queryReturnElements.push("type(r) AS label");
