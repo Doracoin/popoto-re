@@ -12,7 +12,6 @@ query.VALUE_QUERY_LIMIT = 100;
 query.USE_PARENT_RELATION = false;
 query.USE_RELATION_DIRECTION = true;
 query.USE_RELATION_PARENT_NODE = false;
-query.USE_COUNT_PARENT_NODE = false;
 query.RETURN_LABELS = false;
 query.COLLECT_RELATIONS_WITH_VALUES = false;
 query.prefilter = "";
@@ -534,10 +533,6 @@ query.generateNodeCountQuery = function (countedNode) {
         if (negativeElements.parameters.hasOwnProperty(prop)) {
             queryParameters[prop] = negativeElements.parameters[prop];
         }
-    }
-    
-    if (!query.USE_COUNT_PARENT_NODE) {
-        queryMatchElements.splice(0, queryMatchElements.length);
     }
 
     var countAttr = provider.node.getConstraintAttribute(countedNode.label);
