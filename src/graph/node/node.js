@@ -1151,7 +1151,7 @@ node.chooseNodeClick = function (clickedNode) {
 
                     // Notify listeners
                     result.resultValueListeners.forEach(function (listener) {
-                        listener(clickedNode.data);
+                        listener(clickedNode, clickedNode.data);
                     });
 
                     clickedNode.page = 1;
