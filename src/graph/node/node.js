@@ -1123,7 +1123,7 @@ node.chooseNodeClick = function (clickedNode) {
         } else {
             logger.info("Values (" + clickedNode.label + ") ==>");
             var nodeValueQuery = query.generateNodeValueQuery(clickedNode);
-            graph.notifyListeners(graph.Events.GRAPH_NODE_VALUE_LOADING, [clickedNode])
+            graph.notifyListeners(graph.Events.GRAPH_NODE_VALUE_LOADING, [clickedNode, nodeValueQuery.statement])
             runner.run(
                 {
                     "statements": [
@@ -1718,7 +1718,7 @@ node.loadRelationshipData = function (n, callback, directionAngle) {
         var nodeRelationQuery = query.generateNodeRelationQuery(n);
 
         logger.info("Relations (" + n.label + ") ==>");
-        graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_DATA_LOADING, [n])
+        graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_DATA_LOADING, [n, nodeRelationQuery.statement])
         runner.run(
             {
                 "statements": [
