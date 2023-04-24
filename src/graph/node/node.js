@@ -896,11 +896,11 @@ node.segmentClick = function (event, d) {
 
     var n = d3.select(this.parentNode.parentNode).datum();
 
-    graph.ignoreCount = true;
-    graph.notifyListeners(graph.Events.GRAPH_SEGMENT_CLICKED, [d, n]);
-
     var b = node.customSegmentClick(n, d);
     if (b) {
+        graph.ignoreCount = true;
+        graph.notifyListeners(graph.Events.GRAPH_SEGMENT_CLICKED, [d, n]);
+        
         graph.addRelationshipData(n, d, function (targetNode) {
             graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_ADD, [
                 dataModel.links.filter(function (l) {
