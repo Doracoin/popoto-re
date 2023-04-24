@@ -65,6 +65,8 @@ graph.Events = Object.freeze({
     GRAPH_NODE_AUTO_VALUE_LOADING: "graph.node.auto_value_loading",
     GRAPH_NODE_AUTO_VALUE_LOADED: "graph.node.auto_value_loaded",
 
+    RESULT_LOADING: "RESULT_LOADING"
+
     // ================================↑↑↑ Custom End ↑↑↑==========================================
 });
 

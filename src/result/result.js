@@ -4,6 +4,7 @@ import provider from "../provider/provider";
 import logger from "../logger/logger";
 import runner from "../runner/runner";
 import dataModel from "../datamodel/dataModel";
+import graph from "../graph/graph";
 
 var result = {};
 result.containerId = "popoto-results";
@@ -112,6 +113,7 @@ result.updateResults = function () {
             resultsIndex["graph"] = index++;
         }
 
+        var querys = [];
         if (result.TOTAL_COUNT === true && result.resultCountListeners.length > 0) {
             var nodeCountQuery = query.generateNodeCountQuery(dataModel.getRootNode());
             postData.statements.push(
@@ -121,10 +123,11 @@ result.updateResults = function () {
                 }
             );
             resultsIndex["total"] = index++;
+            querys.push(nodeCountQuery.statement);
         }
 
         logger.info("Results ==>");
-
+        graph.notifyListeners(graph.Events.RESULT_LOADING, [querys])
         runner.run(postData)
             .then(function (res) {
                 logger.info("<== Results");
