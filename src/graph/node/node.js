@@ -899,17 +899,28 @@ node.segmentClick = function (event, d) {
     graph.ignoreCount = true;
     graph.notifyListeners(graph.Events.GRAPH_SEGMENT_CLICKED, [d, n]);
 
-    graph.addRelationshipData(n, d, function (targetNode) {
-        graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_ADD, [
-            dataModel.links.filter(function (l) {
-                return l.target === targetNode;
-            })
-        ]);
-        graph.ignoreCount = false;
-        graph.hasGraphChanged = true;
-        update();
-    });
+    var b = node.customSegmentClick(n, d);
+    if (b) {
+        graph.addRelationshipData(n, d, function (targetNode) {
+            graph.notifyListeners(graph.Events.GRAPH_NODE_RELATION_ADD, [
+                dataModel.links.filter(function (l) {
+                    return l.target === targetNode;
+                })
+            ]);
+            graph.ignoreCount = false;
+            graph.hasGraphChanged = true;
+            update();
+        });
+    }
 };
+
+/**
+ * return 'true', the event will transfer continue.
+ * return 'false', then nothing todo.
+ */
+node.customSegmentClick = function (n, d) {
+    return true;
+}
 
 /**
  * Handle the mouse over event on nodes.
